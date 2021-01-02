@@ -1,0 +1,30 @@
+@mixin vertical-center-align {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container, .app-signup, .signup-form {
+    @include vertical-center-align();
+}
+
+.top-bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 2em;
+}
+
+.signup-form {
+    margin-top: 2em;
+}
+
+.terms {
+    font-size: 11px;
+    align-self: flex-start;
+}
+
+.signup-err-msg {
+    margin-top: 1em;
+}

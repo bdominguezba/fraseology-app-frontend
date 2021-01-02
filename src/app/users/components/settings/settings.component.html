@@ -1,0 +1,35 @@
+<div class="container">
+    <div class="top-bar">
+        <div class="arrow" routerLink="/">
+            <mat-icon class="arrow-back-icon">arrow_back</mat-icon>
+        </div>
+        <div>
+            <img class="app-icon" alt="app-logo" src="../../../../assets/images/glasses_x32.png" [matMenuTriggerFor]="appMenu">
+            <mat-menu #appMenu="matMenu">
+                <a [routerLink]="['/home']"><button mat-menu-item class="menu-item">Buscar</button></a>
+                <a [routerLink]="['/expressions']"><button mat-menu-item class="menu-item">Listado de expresiones</button></a>
+                <a [routerLink]="['/subjects']"><button mat-menu-item class="menu-item">Temáticas</button></a>
+            </mat-menu>
+        </div>
+        <div>
+            <img class="user-icon" alt="user-icon" src="../../../../assets/images/user-circle-solid.svg" [matMenuTriggerFor]="profileMenu">
+            <mat-menu #profileMenu="matMenu">
+                <a [routerLink]="['/profile']"><button mat-menu-item class="menu-item">Perfil</button></a>
+                <a [routerLink]="['/favorites']"><button mat-menu-item class="menu-item">Favoritos</button></a>
+                <a [routerLink]="['/settings']"><button mat-menu-item class="menu-item">Configuración</button></a>
+                <button mat-menu-item class="menu-item" (click)="openDialog()">Desconexión</button>
+            </mat-menu>
+        </div>
+    </div>
+    <div>
+        <h2>Configuración</h2>
+    </div>
+    <div class="settings">
+        <form class="config-form" [formGroup]="configForm">
+            <mat-checkbox class="settings-text" [formControl]="notificationCheck" (click)="checkNotificationPreference()">
+                Marca esta casilla para mostrar la notificación con la frase del día en la pantalla principal al iniciar la aplicación.
+            </mat-checkbox>
+        </form>
+    </div>
+    <div class="footer">Fraseology App &#9400;</div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="top-bar">
+        <div class="arrow" routerLink="/">
+            <mat-icon class="arrow-back-icon">arrow_back</mat-icon>
+        </div>
+        <div></div>
+    </div>
+    <div class="page-title">
+        <h2>New user</h2>
+    </div>
+    <div class="app-signup">
+        <form class="signup-form" [formGroup]="signupForm" (ngSubmit)="signUp()">
+            <mat-form-field appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput [formControl]="name" required (focus)="onFocus('name')" (blur)="onBlur()">
+            </mat-form-field>
+            <mat-error *ngIf="selectedField == '' && signupForm.get('name').errors && signupForm.get('name').dirty">
+                <mat-error *ngIf="signupForm.get('name').errors.required">Name is required</mat-error>
+                <mat-error *ngIf="signupForm.get('name').errors.minLength">Name should be at least 2 characters long</mat-error>
+            </mat-error>
+            <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input matInput [formControl]="email" required (focus)="onFocus('email')" (blur)="onBlur()">
+            </mat-form-field>
+            <mat-error *ngIf="selectedField == '' && signupForm.get('email').errors && signupForm.get('email').dirty">
+                <mat-error *ngIf="signupForm.get('email').errors.required">Email is required</mat-error>
+                <mat-error *ngIf="signupForm.get('email').errors.pattern">Invalid email</mat-error>
+            </mat-error>
+            <mat-form-field appearance="fill">
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [formControl]="password" required (focus)="onFocus('password')" (blur)="onBlur()">
+            </mat-form-field>
+            <mat-error *ngIf="selectedField == '' && signupForm.get('password').errors && signupForm.get('password').dirty">
+                <mat-error *ngIf="signupForm.get('password').errors.required">Password is required</mat-error>
+                <mat-error *ngIf="signupForm.get('password').errors.minlength">Password should be at least 8 characters long</mat-error>
+            </mat-error>
+            <mat-form-field appearance="fill">
+                <mat-label>Repeat password</mat-label>
+                <input type="password" matInput [formControl]="repeatPassword" required (focus)="onFocus('repeatPassword')" (blur)="onBlur()">
+            </mat-form-field>
+            <mat-error *ngIf="selectedField == '' && signupForm.get('repeatPassword').errors && signupForm.get('repeatPassword').dirty">
+                <mat-error *ngIf="signupForm.get('repeatPassword').errors.required">Password is required</mat-error>
+                <mat-error *ngIf="signupForm.get('repeatPassword').errors.minlength">Password should be at least 8 characters long</mat-error>
+            </mat-error>
+            <mat-error *ngIf="selectedField == '' && validatorEquality()">Passwords do not match, please retype.</mat-error>
+            <div class="terms">
+                <mat-checkbox class="example-margin" [formControl]="termsAndConditions" (click)="openDialog()" required>Terms and conditions</mat-checkbox>
+            </div>
+            <div class="button-block">
+                <button mat-raised-button color="primary" [disabled]="!signupForm.valid">Sign up</button>
+            </div>
+        </form>
+        <mat-error class="signup-err-msg">{{errorMessage}}</mat-error>
+    </div>
+    <div class="footer">Fraseology App &#9400;</div>
+</div>

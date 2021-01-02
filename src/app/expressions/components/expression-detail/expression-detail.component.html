@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="top-bar">
+        <div class="arrow" routerLink="{{previousRoute}}">
+            <mat-icon class="arrow-back-icon">arrow_back</mat-icon>
+        </div>
+        <div>
+            <img class="app-icon" alt="app-logo" src="../../../../assets/images/glasses_x32.png" [matMenuTriggerFor]="appMenu">
+            <mat-menu #appMenu="matMenu">
+                <a class="menu-link" [routerLink]="['/home']"><button mat-menu-item class="menu-item">Buscar</button></a>
+                <a class="menu-link" [routerLink]="['/expressions']"><button mat-menu-item class="menu-item">Listado de expresiones</button></a>
+                <a class="menu-link" [routerLink]="['/subjects']"><button mat-menu-item class="menu-item">Temáticas</button></a>
+            </mat-menu>
+        </div>
+        <div>
+            <img class="user-icon" alt="user-icon" src="../../../../assets/images/user-circle-solid.svg" [matMenuTriggerFor]="profileMenu">
+            <mat-menu #profileMenu="matMenu">
+                <a class="menu-link" [routerLink]="['/profile']"><button mat-menu-item class="menu-item">Perfil</button></a>
+                <a class="menu-link" [routerLink]="['/favorites']"><button mat-menu-item class="menu-item">Favoritos</button></a>
+                <a class="menu-link" [routerLink]="['/settings']"><button mat-menu-item class="menu-item">Configuración</button></a>
+                <button mat-menu-item class="menu-item" (click)="openDialog()">Desconexión</button>
+            </mat-menu>
+        </div>
+    </div>
+    <div>
+        <mat-card class="expression-card">
+            <mat-card-header class="header-block">
+                <mat-card-title class="expression-title">{{currentExpression.expression}}</mat-card-title>
+                <img class="star-icon" *ngIf="!isFavorited" src="../../../../assets/images/star.png" (click)="addToFavorites()">
+                <img class="star-icon" *ngIf="isFavorited" src="../../../../assets/images/filled-star.png" (click)="toggleFromFavorites()">
+            </mat-card-header>
+            <mat-card-content class="content-block">
+                <div class="definitions">
+                    <p>{{currentExpression.definition_1}}</p>
+                    <p class="notes"><span class="section">Notas:</span> {{currentExpression.notes}}</p>
+                    <hr>
+                    <p><span class="section">Ejemplo: </span><em>{{currentExpression.example_1}}</em></p>
+                    <br>
+                    <p class="section" *ngIf="currentExpression.definition_2">Otras definiciones:</p>
+                    <p *ngIf="currentExpression.definition_2">{{currentExpression.definition_2}} </p>
+                    <p *ngIf="currentExpression.definition_3">{{currentExpression.definition_3}}</p>
+                    <hr *ngIf="currentExpression.definition_2">
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="footer">Fraseology App &#9400;</div>
+</div>

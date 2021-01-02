@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="top-bar">
+        <div class="arrow" routerLink="/" *ngIf="activeSearch">
+            <mat-icon class="arrow-back-icon">arrow_back</mat-icon>
+        </div>
+        <div *ngIf="!activeSearch"></div>
+        <div>
+            <img class="app-logo" alt="app-logo" src="../../../../assets/images/glasses_x32.png">
+        </div>
+        <div>
+            <img class="user-icon" alt="user-icon" src="../../../../assets/images/user-circle-solid.svg" [matMenuTriggerFor]="profileMenu">
+            <mat-menu class="menu" #profileMenu="matMenu">
+                <a class="menu-link" [routerLink]="['/profile']"><button mat-menu-item class="menu-item">Perfil</button></a>
+                <a class="menu-link" [routerLink]="['/favorites']"><button mat-menu-item class="menu-item">Favoritos</button></a>
+                <a class="menu-link" [routerLink]="['/settings']"><button mat-menu-item class="menu-item">Configuración</button></a>
+                <button mat-menu-item class="menu-item" (click)="openDialog()">Desconexión</button>
+            </mat-menu>
+        </div>
+    </div>
+    <div class="dialog-squares" *ngIf="!activeSearch">
+        <p class="dialog-square-first">¿Qué significa pagar <em>a pachas</em>?</p>
+        <p class="dialog-square-second">A tuti... ¿qué? ¿<em>A tutiplén</em>?</p>
+    </div>
+    <div class="search-text">
+        <h2>Busca una palabra o expresión:</h2>
+    </div>
+    <div class="menu-options">
+        <form>
+            <mat-form-field>
+                <input matInput type="text" [(ngModel)]="searchTerm" name="searchTerm" placeholder="Ej.: cerrar el pico" required>
+                <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="search()"><mat-icon class="search-icon">search</mat-icon></button>
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="menu-options" *ngIf="!activeSearch">
+        <div class="home-text">
+            <p>O explora el listado completo y la clasificación por temáticas:</p>
+        </div>
+        <a [routerLink]="['/expressions']"><button class="menu-btn" mat-raised-button color="primary">Listado alfabético</button></a>
+        <a [routerLink]="['/subjects']"><button class="menu-btn" mat-raised-button color="primary">Temáticas</button></a>
+    </div>
+    <div class="search-results" *ngIf="activeSearch">
+        <div *ngFor="let expression of searchResult">
+            <a routerLink="/expressions/{{expression.id}}">
+                <mat-card class="expression-card">
+                    <mat-card-title class="expression-title">{{expression.expression}}</mat-card-title>
+                    <mat-card-subtitle>Ej.: <em>{{expression.example_1}}</em></mat-card-subtitle>
+                </mat-card>
+            </a>
+        </div>
+        <div class="no-results" *ngIf="searchResult.length == 0">No se han encontrado resultados.</div>
+    </div>
+
+    <div class="footer">Fraseology App &#9400;</div>
+    <div class="license"><a href="https://fontawesome.com/license">Licencia de FontAwesome para el uso de iconos</a></div>
+</div>

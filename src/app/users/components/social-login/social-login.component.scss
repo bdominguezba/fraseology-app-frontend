@@ -1,0 +1,58 @@
+@import '../../../../variables.scss';
+
+@mixin vertical-center-align {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 15vh;
+}
+
+.google-button {
+    border: 1px solid grey;
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    background-color: white;
+    font-family: $general-font;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.fb-button {
+    width: 200px;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1877F2;
+    font-family: $general-font;
+    color: white;
+    box-shadow: 2px 2px 5px grey;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    box-shadow: 2px 2px 5px #3D4D93;
+    transform: translateY(2px);
+}
+
+.google-logo {
+    width: 20px;
+    float: left;
+}
+
+.google-btn-text {
+    font-family: $general-font;
+}
+
+.fb-logo {
+    width: 20px;
+    float: left;
+}

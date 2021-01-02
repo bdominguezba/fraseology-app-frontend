@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="top-bar">
+        <div class="arrow" routerLink="/">
+            <mat-icon class="arrow-back-icon">arrow_back</mat-icon>
+        </div>
+        <div>
+            <img class="app-icon" alt="app-logo" src="../../../../assets/images/glasses_x32.png" [matMenuTriggerFor]="appMenu">
+            <mat-menu #appMenu="matMenu">
+                <a class="menu-link" [routerLink]="['/home']"><button mat-menu-item class="menu-item">Buscar</button></a>
+                <a class="menu-link" [routerLink]="['/expressions']"><button mat-menu-item class="menu-item">Listado de expresiones</button></a>
+                <a class="menu-link" [routerLink]="['/subjects']"><button mat-menu-item class="menu-item">Temáticas</button></a>
+            </mat-menu>
+        </div>
+        <div>
+            <img class="user-icon" alt="user-icon" src="../../../../assets/images/user-circle-solid.svg" [matMenuTriggerFor]="profileMenu">
+            <mat-menu #profileMenu="matMenu">
+                <a [routerLink]="['/profile']"><button mat-menu-item class="menu-item">Perfil</button></a>
+                <button mat-menu-item class="menu-item">Favoritos</button>
+                <a [routerLink]="['/settings']"><button mat-menu-item class="menu-item">Configuración</button></a>
+                <button mat-menu-item class="menu-item" (click)="openDialog()">Desconexión</button>
+            </mat-menu>
+        </div>
+    </div>
+    <div>
+        <h2>Favoritos</h2>
+    </div>
+    <div class="expression-list">
+        <div *ngFor="let expression of expressionsArray">
+            <a routerLink="/expressions/{{expression.id}}">
+                <mat-card class="expression-card">
+                    <div class="top-card">
+                        <mat-card-title class="expression-title">{{expression.expression}}</mat-card-title>
+                        <img class="star-icon" src="../../../../assets/images/filled-star.png" (click)="toggleFromFavorites(expression.id)">
+                    </div>
+                </mat-card>
+            </a>
+            
+        </div>
+    </div>
+    <div style="display: none;">Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+    <div class="footer">Fraseology App &#9400;</div>
+</div>

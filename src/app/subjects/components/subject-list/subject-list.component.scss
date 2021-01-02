@@ -1,0 +1,86 @@
+@mixin vertical-center-align {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container, .menu-options {
+    @include vertical-center-align();
+}
+
+.top-bar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 2em;
+}
+
+.user-icon {
+    width: 2em;
+}
+
+.user-icon:hover, .app-icon:hover {
+    cursor: pointer;
+}
+
+.app-icon {
+    width: 2em;
+}
+
+.license {
+    display: none;
+}
+
+button {
+    width: 15em;
+    margin-top: 1.5em;
+}
+
+.home-text {
+    margin-top: 2em;
+}
+
+.menu-item {
+    text-align: center;
+}
+
+.menu-item:hover {
+    cursor: pointer;
+    background-color: #ff6eff;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link, a:visited {
+    color: black;
+}
+
+.menu-btn a {
+    color:white !important;
+}
+
+.subject-list {
+    margin-bottom: 5em;
+    width: 70vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.expression-card {
+    background-color: #ac00cb;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 170px;
+    height: 120px;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1em;
+    text-align: center;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}

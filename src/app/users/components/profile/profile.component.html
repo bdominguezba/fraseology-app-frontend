@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="top-bar">
+        <div class="arrow" routerLink="/">
+            <mat-icon class="arrow-back-icon">arrow_back</mat-icon>
+        </div>
+        <div>
+            <img class="app-icon" alt="app-logo" src="../../../../assets/images/glasses_x32.png" [matMenuTriggerFor]="appMenu">
+            <mat-menu #appMenu="matMenu">
+                <a class="menu-link" [routerLink]="['/home']"><button mat-menu-item class="menu-item">Buscar</button></a>
+                <a class="menu-link" [routerLink]="['/expressions']"><button mat-menu-item class="menu-item">Listado de expresiones</button></a>
+                <a class="menu-link" [routerLink]="['/subjects']"><button mat-menu-item class="menu-item">Temáticas</button></a>
+            </mat-menu>
+        </div>
+        <div>
+            <img class="user-icon" alt="user-icon" src="../../../../assets/images/user-circle-solid.svg" [matMenuTriggerFor]="profileMenu">
+            <mat-menu #profileMenu="matMenu">
+                <button mat-menu-item class="menu-item">Perfil</button>
+                <a class="menu-link" [routerLink]="['/favorites']"><button mat-menu-item class="menu-item">Favoritos</button></a>
+                <a class="menu-link" [routerLink]="['/settings']"><button mat-menu-item class="menu-item">Configuración</button></a>
+                <button mat-menu-item class="menu-item" (click)="openDialog()">Desconexión</button>
+            </mat-menu>
+        </div>
+    </div>
+    <div>
+        <h2>Perfil</h2>
+    </div>
+    <div class="profile-form">
+        <form class="profile-form" [formGroup]="profileForm" (ngSubmit)="updateUser()">
+            <mat-form-field class="profile-input" appearance="fill">
+                <mat-label>Name</mat-label>
+                <input matInput [formControl]="name" (focus)="onFocus('repeatPassword')" (blur)="onBlur()" required placeholder="{{name.value}}">
+            </mat-form-field>
+            <mat-error *ngIf="selectedField == '' && profileForm.get('name').errors && profileForm.get('name').dirty">
+                <mat-error *ngIf="profileForm.get('name').errors.required">Name is required</mat-error>
+                <mat-error *ngIf="profileForm.get('name').errors.minlength">Name must be at least 2 characters long</mat-error>
+            </mat-error>
+            <mat-form-field class="profile-input" appearance="fill">
+                <mat-label>Surname</mat-label>
+                <input matInput [formControl]="surname" (focus)="onFocus('repeatPassword')" (blur)="onBlur()" placeholder="{{surname.value}}">
+            </mat-form-field>
+            <mat-error *ngIf="selectedField == '' && profileForm.get('surname').errors && profileForm.get('surname').dirty">
+                <mat-error *ngIf="profileForm.get('surname').errors.minlength">Surname must be at least 2 characters long</mat-error>
+            </mat-error>
+            <mat-form-field class="profile-input" appearance="fill">
+                <mat-label>Birthdate</mat-label>
+                <input matInput [matDatepicker]="picker" [formControl]="birthdate">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field class="profile-input" appearance="fill" required>
+                <mat-label>Email</mat-label>
+                <input matInput [formControl]="email" (focus)="onFocus('repeatPassword')" (blur)="onBlur()" required>
+            </mat-form-field>
+            <mat-error *ngIf="selectedField == '' && profileForm.get('email').errors && profileForm.get('email').dirty">
+                <mat-error *ngIf="profileForm.get('email').errors.required">Email is required</mat-error>
+                <mat-error *ngIf="profileForm.get('email').errors.pattern">Invalid email</mat-error>
+            </mat-error>
+        </form>
+    </div>
+    <div>
+        <a [routerLink]="['/reset-password']">Reset password</a>
+    </div>
+    <div class="button-block">
+        <button mat-raised-button type="submit" color="primary" [disabled]="!profileForm.valid" (click)="updateUser()">Guardar</button>
+    </div>
+    <div class="footer">Fraseology App &#9400;</div>
+</div>
