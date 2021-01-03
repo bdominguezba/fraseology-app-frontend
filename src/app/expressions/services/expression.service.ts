@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://fraseology-app.herokuapp.com/expressions';
+const API_URL = 'https://fraseology-app.herokuapp.com/expressions';
 
 @Injectable({
   providedIn: 'root'
