@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SocialLoginModule, GoogleLoginProvider, FacebookLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './shared/helpers/auth.interceptor';
+import { httpInterceptorProviders } from './shared/helpers/check-https-interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Angular Material imports
@@ -39,6 +40,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   ],
   providers: [
     authInterceptorProviders,
+    httpInterceptorProviders,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {
