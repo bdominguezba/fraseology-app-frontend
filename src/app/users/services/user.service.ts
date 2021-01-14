@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const API_URL = 'https://fraseology-app.herokuapp.com/user';
+const API_URL = 'https://cors-anywhere.herokuapp.com/https://fraseology-app.herokuapp.com/user';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
